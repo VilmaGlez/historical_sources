@@ -1,0 +1,8 @@
+deepl
+tensorflow
+numpy
+matplotlib
+collections
+pandas
+logging
+argparse

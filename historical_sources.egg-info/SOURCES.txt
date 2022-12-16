@@ -1,0 +1,13 @@
+README.md
+setup.py
+historical-sources/__init__.py
+historical-sources/classification.py
+historical-sources/set_train_modules.py
+historical-sources/train_predict.py
+historical-sources/translate.py
+historical_sources.egg-info/PKG-INFO
+historical_sources.egg-info/SOURCES.txt
+historical_sources.egg-info/dependency_links.txt
+historical_sources.egg-info/not-zip-safe
+historical_sources.egg-info/requires.txt
+historical_sources.egg-info/top_level.txt

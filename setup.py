@@ -4,7 +4,7 @@ import os
 import re
 import codecs
 
-NAME = "historicalsources"
+NAME = "historical-sources"
 META_PATH = os.path.join(NAME, "__init__.py")
 REQUIREMENTS = []
 CLASSIFIERS = [
@@ -44,7 +44,7 @@ def find_meta(meta):
 
 if __name__ == "__main__":
     setup(
-        name="historicalsources",
+        name="historical-sources",
         description=find_meta("description"),
         license=find_meta("license"),
         url=find_meta("url"),
