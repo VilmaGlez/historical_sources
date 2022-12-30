@@ -26,7 +26,7 @@ import string, re, os
 import math, random, functools
 from joblib import Parallel, delayed
 import logging
-from pdb import set_trace as st
+from pdb import set_trace
 import argparse
 
 
@@ -364,12 +364,12 @@ def save_predictions(pairs, to_file_path):
     write_result_row = functools.partial(build_row_result, out_file=out_file)
     out_file.write('\t'.join(['Subj_Pred', 'Obj', 'Obj_true\n']))
     Parallel(n_jobs=1)(
-        delayed(write_result_row)(inp, out, pmid)
-            for inp, out, pmid in pairs)
+        delayed(write_result_row)(inp, out)
+            for inp, out in pairs)
     out_file.close()
 
 
-def build_row_result(inp, out, pmid, out_file):
+def build_row_result(inp, out, out_file):
     translated = decode_sequence(inp)
     #return {'Subj_Pred': inp,
     #        'Obj': translated,
@@ -455,11 +455,11 @@ parser.add_argument("-tnD", "--trainData", type=str,
     help = "Training data (TSV file)")
 
 parser.add_argument("-vD", "--validData", type=str,
-    default="data/test.tsv",
+    default="data/results30P.tsv",
     help = "Valid data (TSV file)")
 
 parser.add_argument("-ttD", "--testData", type=str,
-    default="data/test.tsv",
+    default="data/results30P.tsv",
     help = "Valid data (TSV file)")
 
 parser.add_argument("-dN", "--datasetName", type=str,
@@ -570,7 +570,7 @@ if train_flag:
 
     input_vectorizer.adapt(train_in_texts)
     output_vectorizer.adapt(train_out_texts)
-
+    set_trace()
     #saving the vectorizers also
     save_vectorizer(
         vectorizer=input_vectorizer, to_file=out_dir+'in_vect_model')
