@@ -1,7 +1,7 @@
 import os
 import pandas as pd
-from classification import extract_sentences
-from classification import extract_triplets 
+from historical_sources.classification import extract_sentences
+from historical_sources.classification import extract_triplets 
 #ruta del directorio de los archivos fuente 
 input_path = "/home/iarroyof/v/Machine-ready_RGs_corpus_Individual_ENG/"
 
