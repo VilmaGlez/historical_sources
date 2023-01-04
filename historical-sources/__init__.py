@@ -1,4 +1,4 @@
-__title__ = "historical-sources"
+__title__ = "historical_sources"
 __version__ = "0.0.1"
 __author__ = "Vilma Gonzalez"
 __email__ = "vilma.gonzalezruiz@gmail.com"
