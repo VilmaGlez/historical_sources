@@ -16,7 +16,7 @@ def open_source_file(name):
         data :: string 
     """
     with open(name, 'r') as file:
-		data = file.read().rstrip()
+        data = file.read().rstrip()
     return data
 
 #crear los tsv
