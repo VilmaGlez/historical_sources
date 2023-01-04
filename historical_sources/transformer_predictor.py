@@ -9,7 +9,7 @@ import argparse
 
 from pdb import set_trace as st
 
-config_file = 'historical-sources/predictor_configuration.json'
+config_file = 'historical_sources/predictor_configuration.json'
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s %(message)s',

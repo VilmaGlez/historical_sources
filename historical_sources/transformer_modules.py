@@ -17,7 +17,7 @@ logging.basicConfig(
     format='%(asctime)s %(message)s',
     datefmt='%m/%d/%Y %I:%M:%S %p')
 
-config_file = 'historical-sources/predictor_configuration.json'
+config_file = 'historical_sources/predictor_configuration.json'
 strip_chars = string.punctuation
 strip_chars = strip_chars.replace("[", "")
 strip_chars = strip_chars.replace("]", "")
@@ -368,7 +368,7 @@ def get_config(config_file):
     num_heads = int(js["num_heads"])
     key_dim = int(float(model_dim)/float(num_heads))
 
-    checkpoint_path = ("historical-sources/results_final/{}-transformer_epochs"
+    checkpoint_path = ("historical_sources/results_final/{}-transformer_epochs"
             "-{}_stackSize-{}_seqlen-{}_maxfeat-{}_batch-{}_keydim"
             "-{}_modeldim-{}_latent-{}_heads-{}/cp.ckpt".format(
             dataset_name,
