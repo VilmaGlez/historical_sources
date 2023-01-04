@@ -4,7 +4,7 @@ import os
 import re
 import codecs
 
-NAME = "historical_sources"
+NAME = "historical-sources"
 META_PATH = os.path.join(NAME, "__init__.py")
 REQUIREMENTS = []
 CLASSIFIERS = [
