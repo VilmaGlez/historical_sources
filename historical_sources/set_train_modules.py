@@ -15,9 +15,9 @@ def open_source_file(name):
     Returns:
         data :: string 
     """
-	with open(name, 'r') as file:
+    with open(name, 'r') as file:
 		data = file.read().rstrip()
-	return data
+    return data
 
 #crear los tsv
 def tsv_set_train(r,e):
