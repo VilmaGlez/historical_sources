@@ -54,6 +54,6 @@ if __name__ == "__main__":
         long_description=open("README.md").read(),
         packages=find_packages(),
         zip_safe=False,
-        install_requires=["deepl","tensorflow","numpy","matplotlib","collections","pandas","logging","argparse"],
+        install_requires=["deepl","tensorflow","numpy","matplotlib","pandas"],
         classifiers=CLASSIFIERS,
     )
