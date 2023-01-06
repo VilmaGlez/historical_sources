@@ -51,7 +51,7 @@ def set_train(input_path):
         for fichero in ficheros:
             ruta=input_path+fichero.name
             data=open_source_file(ruta)
-            sentences=extract_sentence(data)
+            sentences=extract_sentences(data)
             for sentence in sentences:
                 output=extract_triplets(sentence,fichero.name)
                 if output != None:
