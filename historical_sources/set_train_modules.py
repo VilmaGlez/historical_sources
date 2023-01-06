@@ -50,7 +50,7 @@ def set_train(input_path):
     with os.scandir(input_path) as ficheros:
         for fichero in ficheros:
             ruta=input_path+fichero.name
-            data=open_file(ruta)
+            data=open_source_file(ruta)
             sentences=extract_sentence(data)
             for sentence in sentences:
                 output=extract_triplets(sentence,fichero.name)
