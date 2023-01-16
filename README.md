@@ -11,12 +11,11 @@ Extraction and processing of data from historical sources of the 16th century
 Open your terminal and type:
 
 ```sh 
-pip install git+https://github.com/VilmaGlez/historical-sources.git
+pip install git+https://github.com/VilmaGlez/historical_sources.git
 ```
 
 ## Use 
 
-Example
 
 ```sh 
 from historical-sources import transformer_predictor
