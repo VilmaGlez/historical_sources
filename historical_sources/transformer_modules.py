@@ -1,4 +1,3 @@
-from historical_sources.downloads import download_results
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
@@ -11,8 +10,6 @@ import functools
 from joblib import Parallel, delayed
 
 from pdb import set_trace as st
-
-download_results()
 
 logging.basicConfig(
     level=logging.INFO,
