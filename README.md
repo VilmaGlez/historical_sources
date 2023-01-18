@@ -15,6 +15,22 @@ Open your terminal and type:
 ```sh
 conda create --name python3-env python
 ```
+To change between environments type
+
+```sh
+conda activate [name-of-your-environment]
+```
+Install Allenlp
+ 
+```sh
+pip install allennlp==2.2.0
+
+pip install allennlp-models==2.2.0
+```
+
+```sh
+pip install allennlp-models==2.2.0
+```
 Next, for package installation open your terminal and type:
 
 ```sh 
