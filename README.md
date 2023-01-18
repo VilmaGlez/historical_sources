@@ -43,21 +43,29 @@ pip install git+https://github.com/VilmaGlez/historical_sources.git
 ```sh 
 from historical_sources import set_train_modules
 
-set_train_modules.set_train(your document path)
+set_train_modules.set_train(your-document-path)
 
 ```
 
 The results are a document called "setTrain.tsv".
 
+2.-Example to train the neural network
 
-2.- Example to make a prediction.
+```sh
+from historical_sources import transformer_predictor
+
+transformer_predictor.train(your-file)
+
+```
+
+3.- Example to make a inference.
 
 ```sh 
 from historical_sources import transformer_predictor
 
-Subject_Predicate = "The cause of lung cancer can be"
+Subject_Predicate = "The women bring a garment that they make from"
 
-Object = "DNA methylation"
+Object = "the cotton blanket itself"
 
 prediction = transformer_predictor.predictor((Subject_Predicate, Object))
 
