@@ -54,6 +54,6 @@ if __name__ == "__main__":
         long_description=open("README.md").read(),
         packages=find_packages(),
         zip_safe=False,
-        install_requires=["joblib","stanza","deepl","tensorflow","numpy","matplotlib","pandas"],
+        install_requires=["joblib","stanza","deepl","tensorflow","numpy","matplotlib","pandas","gdown"],
         classifiers=CLASSIFIERS,
     )

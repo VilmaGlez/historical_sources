@@ -1,0 +1,10 @@
+allennlp_models==2.9.0
+deepl==1.12.0
+historical_sources==0.0.1
+joblib==1.1.0
+matplotlib==3.4.2
+numpy==1.19.5
+pandas==1.3.3
+stanza==1.4.2
+tensorflow==2.6.0
+requirements.txt

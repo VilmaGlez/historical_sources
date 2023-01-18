@@ -7,9 +7,11 @@ Extraction and processing of data from historical sources of the 16th century.
 
 
 ## Installation
-
+First of all you must install [Conda](https://www.anaconda.com/products/distribution).
 Open your terminal and type:
-
+```sh
+conda create --name python3-env python
+```
 ```sh 
 pip install git+https://github.com/VilmaGlez/historical_sources.git
 ```
