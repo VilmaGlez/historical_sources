@@ -2,8 +2,6 @@ import os
 import pandas as pd
 from historical_sources.classification import extract_sentences
 from historical_sources.classification import extract_triplets 
-#ruta del directorio de los archivos fuente 
-input_path = "/home/iarroyof/v/Machine-ready_RGs_corpus_Individual_ENG/"
 
 #abrir archivo traducido
 def open_source_file(name):
