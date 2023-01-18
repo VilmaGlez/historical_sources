@@ -25,7 +25,6 @@ Install Allenlp
 ```sh
 pip install allennlp==2.2.0
 
-pip install allennlp-models==2.2.0
 ```
 
 ```sh
