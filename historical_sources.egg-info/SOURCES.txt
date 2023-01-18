@@ -2,6 +2,7 @@ README.md
 setup.py
 historical_sources/__init__.py
 historical_sources/classification.py
+historical_sources/downloads.py
 historical_sources/set_train_modules.py
 historical_sources/transformer_modules.py
 historical_sources/transformer_predictor.py

@@ -1,5 +1,9 @@
+allennlp_models
+joblib
+stanza
 deepl
 tensorflow
 numpy
 matplotlib
 pandas
+gdown
