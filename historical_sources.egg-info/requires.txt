@@ -1,4 +1,3 @@
-allennlp_models
 joblib
 stanza
 deepl
