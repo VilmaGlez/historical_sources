@@ -1,12 +1,11 @@
 # Historical Sources
-## Large-scale computational analysis of historical sources
+## Description
 
-Extraction and processing of data from historical sources of the 16th century.
-
-## Please read this guide before try to run the application.
-
+Data extraction and treatment package from historical sources from the 16th century through the use of neural networks.
 
 ## Installation
+
+### Installing Conda
 
 First of all you must install [Conda](https://www.anaconda.com/products/distribution).
 
@@ -15,14 +14,17 @@ Open your terminal and type:
 ```sh
 conda create --name python3-env python
 ```
-To change between environments type
+To change between environments type:
 
 ```sh
 conda activate [name-of-your-environment]
 ```
-Install Allenlp
+###Installing AllenNLP
+To avoid errors in AllenNLP installation, first do the following:
+
  
 ```sh
+
 pip install allennlp==2.2.0
 
 ```
