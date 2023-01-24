@@ -25,6 +25,7 @@ To avoid errors in AllenNLP installation, first do the following:
 ```sh
 conda install -c conda-forge jsonnet
 ```
+Now, install allennlp and models: 
  
 ```sh
 
@@ -35,7 +36,9 @@ pip install allennlp==2.2.0
 ```sh
 pip install allennlp-models==2.2.0
 ```
-Next, for package installation open your terminal and type:
+### Installig historical_sources package
+
+Finally, for package installation open your terminal and type:
 
 ```sh 
 pip install git+https://github.com/VilmaGlez/historical_sources.git
