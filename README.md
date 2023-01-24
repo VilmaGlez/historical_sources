@@ -9,8 +9,7 @@ Data extraction and treatment package from historical sources from the 16th cent
 
 First of all you must install [Conda](https://www.anaconda.com/products/distribution).
 
-Open your terminal and type:
-
+Once installed open your terminal and type:
 ```sh
 conda create --name python3-env python
 ```
@@ -23,6 +22,9 @@ conda activate [name-of-your-environment]
 
 To avoid errors in AllenNLP installation, first do the following:
 
+```sh
+conda install -c conda-forge jsonnet
+```
  
 ```sh
 
