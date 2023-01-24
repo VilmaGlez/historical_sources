@@ -1,6 +1,7 @@
 README.md
 setup.py
 historical_sources/__init__.py
+historical_sources/predictor_configuration.json
 historical_sources/classification.py
 historical_sources/downloads.py
 historical_sources/set_train_modules.py
