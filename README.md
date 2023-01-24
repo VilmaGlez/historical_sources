@@ -19,7 +19,8 @@ To change between environments type:
 ```sh
 conda activate [name-of-your-environment]
 ```
-###Installing AllenNLP
+### Installing AllenNLP
+
 To avoid errors in AllenNLP installation, first do the following:
 
  
