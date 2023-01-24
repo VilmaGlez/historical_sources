@@ -8,7 +8,7 @@ import logging
 import argparse
 
 from pdb import set_trace as st
-cwd = os.getcwd()
+cwd = str(sysconfig.get_paths()["purelib"]) + '/historical_sources'
 config_file = cwd + '/predictor_configuration.json'
 logging.basicConfig(
     level=logging.INFO,

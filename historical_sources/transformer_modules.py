@@ -1,4 +1,5 @@
 import tensorflow as tf
+import sysconfig
 from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.utils import  plot_model
@@ -15,7 +16,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s %(message)s',
     datefmt='%m/%d/%Y %I:%M:%S %p')
-cwd = os.getcwd()
+cwd = str(sysconfig.get_paths()["purelib"]) + '/historical_sources'
 config_file = cwd + '/predictor_configuration.json'
 strip_chars = string.punctuation
 strip_chars = strip_chars.replace("[", "")
