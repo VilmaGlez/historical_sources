@@ -18,7 +18,7 @@ logging.basicConfig(
     datefmt='%m/%d/%Y %I:%M:%S %p')
 cwd = str(sysconfig.get_paths()["purelib"]) + '/historical_sources'
 config_file = cwd + '/predictor_configuration.json'
-cout_dir = cdw + '/results_final/OIEGP-transformer_epochs-100_stackSize-1_seqlen-30_maxfeat-15000_batch-64_keydim-64_modeldim-512_latent-2048_heads-8/'
+cout_dir = cwd + '/results_final/OIEGP-transformer_epochs-100_stackSize-1_seqlen-30_maxfeat-15000_batch-64_keydim-64_modeldim-512_latent-2048_heads-8/'
 strip_chars = string.punctuation
 strip_chars = strip_chars.replace("[", "")
 strip_chars = strip_chars.replace("]", "")
