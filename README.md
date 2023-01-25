@@ -62,6 +62,7 @@ Finally, you must download the trained model by executing the following:
 from historical_sources import downloads
 
 ```
+Note: the above step only needs to be done once after the package installation.
 ## Usage 
 
 1.- Example to create a training set. 
