@@ -44,14 +44,32 @@ Description: # Historical Sources
         ```sh
         pip install allennlp-models==2.2.0
         ```
+        ### Installing TensorFlow
+        
+        Install TensorFlow 2.6
+        ```sh
+        pip install tensorflow==2.6.0
+        ```
+        And install Keras 2.6
+        ```sh
+        pip install keras==2.6.0
+        ```
         ### Installing historical_sources package
         
-        Finally, for package installation open your terminal and type:
+        Next step, for package installation open your terminal and type:
         
         ```sh 
         pip install git+https://github.com/VilmaGlez/historical_sources.git
         ```
+        ### Download a trained model
         
+        Finally, you must download the trained model by executing the following:
+        
+        ```sh
+        
+        from historical_sources import downloads
+        
+        ```
         ## Usage 
         
         1.- Example to create a training set. 
