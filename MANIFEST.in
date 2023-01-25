@@ -1,2 +1,2 @@
-include predictor_configuration.json
+include historical_sources/predictor_configuration.json
 
