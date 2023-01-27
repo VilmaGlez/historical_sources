@@ -64,24 +64,85 @@ for testing purposes:
 def predictor(val_pair):
 	global n_demo, out_dir
 	return make_prediction(val_pair, n_demo, out_dir)
-#Subject_Predicate = "The cause of lung cancer can be"
-#Object = "DNA methylation"
 
+def train(example=True,dataFile):
+    commonFile=cwd+ 'datasets/train.tsv'
+    df = pd.read_csv(commonFile,sep='\t',lineterminator='\n',header=None)
+    if example is True:
+        exampleFile=cwd+ 'datasets/results200.tsv'
+        df1 = pd.read_csv(exampleFile,sep='\t',lineterminator='\n',header=None)
+        df1.columns=['id','sentence','predicate','subject','object']
+        frames = [df,df1]
+        trainFile = pd.concat(frames)
+        trainFile=trainFile.sample(frac=1).reset_index(drop=True)
+        rutaTrainFile=cwd+ 'datasets/trainFile.tsv'
+        trainFile.to_csv(rutaTrainFile,index=False,sep='\t')
+        with open(rutaTrainFile) as f:
+            train_text = f.readlines()
+        with open(exampleFile) as f:
+            test_text = f.readlines()
+    else:
+        df1 = pd.read_csv(dataFile,sep='\t',lineterminator='\n',header=None)
+        df1.columns=['id','sentence','predicate','subject','object']
+        frames = [df,df1]
+        trainFile = pd.concat(frames)
+        trainFile=trainFile.sample(frac=1).reset_index(drop=True)
+        rutaTrainFile=cwd+ 'datasets/trainFile.tsv'
+        trainFile.to_csv(rutaTrainFile,index=False,sep='\t')
+        with open(rutaTrainFile) as f:
+            train_text = f.readlines()
+        with open(dataFile) as f:
+            test_text = f.readlines()
 
-#prediction = predictor((Subject_Predicate, Object))
-#if prediction is None:
-#    pass
-#else:
-#    prediction = prediction.replace("[start] ", '').replace(" [end]", '')
-#    print(f"\n\n\n\nGiven sentence: {Subject_Predicate} {Object}")
-#    print(f"Generated sentence: {Subject_Predicate} {prediction}")
+    train_pairs = list(
+        map(functools.partial(
+            prepare_data), train_text))
+    test_pairs= list(
+        map(functools.partial(
+            prepare_data), test_text))
+    train_in_texts = [pair[0] for pair in train_pairs]
+    train_out_texts = [pair[1] for pair in train_pairs]
 
-# TODO: Ask the user if the information provided by the predictor was valid
-# or not. In the case single prediction selected suggest the user using multiple
-# prediction mode. If multiple prediction mode is selected, ask the user mark 
-# valid, invalid and undecided predictions. This should be a prerequisite to 
-# allow the user to copy or download the results of the query. Of course, the
-# query, results and user's annotations should be added to a dataset.
-# TODO: Achieving open vocabulary models for actual open vocabulary reasoning:
-# https://nlp.stanford.edu/pubs/luong2016acl_hybrid.pdf
-# https://arxiv.org/abs/2112.10508
+    input_vectorizer = layers.experimental.preprocessing.TextVectorization(
+        output_mode="int", max_tokens=max_features,
+        # ragged=False, # only for TF v2.7
+        output_sequence_length=sequence_length,
+        standardize=custom_standardization)
+
+    output_vectorizer = layers.experimental.preprocessing.TextVectorization(
+        output_mode="int", max_tokens=max_features, # ragged=False,
+        output_sequence_length=sequence_length+1,
+        standardize=custom_standardization)
+
+    input_vectorizer.adapt(train_in_texts)
+    output_vectorizer.adapt(train_out_texts)
+    #saving the vectorizers also
+    save_vectorizer(
+        vectorizer=input_vectorizer, to_file=out_dir+'in_vect_model')
+    save_vectorizer(
+        vectorizer=output_vectorizer, to_file=out_dir+'out_vect_model')
+    train_ds = make_dataset(train_pairs)
+    test_ds = make_dataset(test_pairs)
+    logging.info("Training Transformer Semantic EncoDec")
+    history = transformer.fit(train_ds,
+        epochs=n_epochs,
+        validation_data=test_ds,
+            callbacks=[ #cp_callback,
+                        es_callback])
+    logging.info("TRAINED!!")
+    rdf = pd.DataFrame(history.history)
+    rdf.to_csv(out_dir + "history.csv")
+    fig, axes = plt.subplots(2, 1)
+    rdf[sort_cols(rdf.columns)].iloc[:, :2].plot(ax=axes[0])
+    axes[0].grid(b=True,which='major',axis='both',linestyle='--')
+    rdf[sort_cols(rdf.columns)].iloc[:, 2:].plot(ax=axes[1])
+    axes[1].grid(b=True,which='major',axis='both',linestyle='--')
+    plt.savefig(out_dir + 'history_plot.pdf')
+    """ Notes about saving the model weights:
+    - must be the same paramers when you load the model
+    - if you specify a directory, you will save them without a prefix
+    """
+    logging.info("Saving learned weights to {}\n".format(
+        out_dir+'transformer_model_weights/model'))
+    transformer.save_weights(out_dir+'transformer_model_weights/model')
+
