@@ -65,7 +65,7 @@ from historical_sources import downloads
 Note: the above step only needs to be done once after the package installation.
 ## Usage 
 
-1.- Example to create a training set. 
+### Example to create a training set. 
 
 ```sh 
 from historical_sources import set_train_modules
@@ -76,33 +76,55 @@ set_train_modules.set_train(your-document-path)
 
 The results are a document called "setTrain.tsv".
 
-2.-Example to train the neural network
+### Example to train the neural network
 
 ```sh
 from historical_sources import transformer_predictor
 
-transformer_predictor.train(your-file)
+transformer_predictor.train()
 
 ```
 
-3.- Example to make a inference.
+### Example to make a inference.
 
-```sh 
-from historical_sources import transformer_predictor
-
-Subject_Predicate = "The women bring a garment that they make from"
-
-Object = "the cotton blanket itself"
-
-prediction = transformer_predictor.predictor((Subject_Predicate, Object))
-
-prediction = prediction.replace("[start] ", '').replace(" [end]", '')
-
-print(f"\n\n\n\nGiven sentence: {Subject_Predicate} {Object}")
-
-print(f"Generated sentence: {Subject_Predicate} {prediction}")
-
+```python
+>>> from historical_sources import transformer_predictor
+>>> Subject_Predicate = "Teuliztaca falls"
+>>> Object = "between the south and the west"
+>>> prediction = transformer_predictor.predictor((Subject_Predicate, Object))
+>>> prediction = prediction.replace("[start] ", '').replace(" [end]", '')
+>>> print(f"Given sentence: {Subject_Predicate} {Object}")
+Given sentence: Teuliztaca falls between the south and the west
+>>> print(f"Generated sentence: {Subject_Predicate} {prediction}")
+Generated sentence: Teuliztaca falls to the south
+ 
 ```
+ 
+```python
+>>> from historical_sources import transformer_predictor
+>>> Subject_Predicate = "the grain that grows in this land as referred to from its seeds is"
+>>> Object = "corn, chili, beans and pumpkins (where the seeds are obtained), and sweet potatoes and yucca sweet potato, and anonas and tomatoes, and chia (in the form of zargatona), which is a seed that, ground and toasted, with stirred toasted corn, is a good concoction to drink; and the natives drink it, and consider it a very healthy and fresh thing."
+>>> prediction = transformer_predictor.predictor((Subject_Predicate, Object))
+>>> prediction = prediction.replace("[start] ", '').replace(" [end]", '')
+>>> print(f"Given sentence: {Subject_Predicate} {Object}")
+Given sentence: the grain that grows in this land as referred to from its seeds is corn, chili, beans and pumpkins (where the seeds are obtained), and sweet potatoes and yucca sweet potato, and anonas and tomatoes, and chia (in the form of zargatona), which is a seed that, ground and toasted, with stirred toasted corn, is a good concoction to drink; and the natives drink it, and consider it a very healthy and fresh thing.
+>>> print(f"Generated sentence: {Subject_Predicate} {prediction}")
+Generated sentence: the grain that grows in this land as referred to from its seeds is corn beans chili peppers and beans and chili and other legumes that they use for the rest
+ 
+```
+```python
+>>> from historical_sources import transformer_predictor
+>>> Subject_Predicate = "The weapons they used were"
+>>> Object = "bows and arrows and clubs, in which they put knives and flint and some stones, which clubs served as weapon axes"
+>>> prediction = transformer_predictor.predictor((Subject_Predicate, Object))
+>>> prediction = prediction.replace("[start] ", '').replace(" [end]", '')
+>>> print(f"Given sentence: {Subject_Predicate} {Object}")
+Given sentence: The weapons they used were bows and arrows and clubs, in which they put knives and flint and some stones, which clubs served as weapon axes
+>>> print(f"Generated sentence: {Subject_Predicate} {prediction}")
+Generated sentence: The weapons they used were bows and arrows and clubs
+ 
+```
+
 
 
 
