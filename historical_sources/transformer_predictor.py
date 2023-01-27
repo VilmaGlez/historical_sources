@@ -223,7 +223,6 @@ def mixData():
     trainFile.to_csv(rutaTrainFile,index=False,sep='\t')
 
 def train2():
-    mixData()
     exampleFile=cwd+ '/datasets/trainFile.tsv'
     with open(exampleFile) as f:
         train_text = f.readlines()
