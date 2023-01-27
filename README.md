@@ -66,22 +66,23 @@ Note: the above step only needs to be done once after the package installation.
 ## Usage 
 
 ### Example to create a training set. 
+You can specify the path of your file or use the default as follows:
 
-```sh 
-from historical_sources import set_train_modules
+```python 
+>>> from historical_sources import set_train_modules
 
-set_train_modules.set_train(your-document-path)
+>>> set_train_modules.set_train()
 
 ```
 
 The results are a document called "setTrain.tsv".
 
 ### Example to train the neural network
+You can specify the path of your file or use the default as follows:
+```python
+>>> from historical_sources import transformer_predictor
 
-```sh
-from historical_sources import transformer_predictor
-
-transformer_predictor.train()
+>>> transformer_predictor.train()
 
 ```
 
