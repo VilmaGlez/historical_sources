@@ -65,7 +65,7 @@ def predictor(val_pair):
 	global n_demo, out_dir
 	return make_prediction(val_pair, n_demo, out_dir)
 
-def train(example=True,dataFile):
+def train(example=True,dataFile=None):
     commonFile=cwd+ 'datasets/train.tsv'
     df = pd.read_csv(commonFile,sep='\t',lineterminator='\n',header=None)
     if example is True:
