@@ -2,6 +2,9 @@ import os
 import pandas as pd
 from historical_sources.classification import extract_sentences
 from historical_sources.classification import extract_triplets 
+import sysconfig
+
+cwd = str(sysconfig.get_paths()["purelib"]) + '/historical_sources/datasets/p/'
 
 #abrir archivo traducido
 def open_source_file(name):
@@ -33,7 +36,7 @@ def tsv_set_train(r,e):
     df1 = pd.DataFrame (e, columns = ['id','sentence','subject','predicate','object'])
     df1.to_csv('erroresSetTrain.tsv',index=False,sep='\t')
 
-def set_train(input_path):
+def set_train(input_path=cwd):
     """
     from a directory create a set train
     
