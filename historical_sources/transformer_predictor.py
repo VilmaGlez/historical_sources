@@ -152,7 +152,7 @@ def train(example=True,dataFile=None):
     transformer.save_weights(out_dir+'transformer_model_weights/model')
 
 def train1():
-    exampleFile=cwd+ '/datasets/results200.tsv'
+    exampleFile=cwd+ '/datasets/train.tsv'
     with open(exampleFile) as f:
         train_text = f.readlines()
     with open(exampleFile) as f:
