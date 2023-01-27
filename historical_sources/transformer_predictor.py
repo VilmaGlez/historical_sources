@@ -145,4 +145,3 @@ def train(example=True,dataFile):
     logging.info("Saving learned weights to {}\n".format(
         out_dir+'transformer_model_weights/model'))
     transformer.save_weights(out_dir+'transformer_model_weights/model')
-
