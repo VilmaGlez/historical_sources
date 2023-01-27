@@ -219,6 +219,7 @@ def mixData():
     frames = [df,df1]
     trainFile = pd.concat(frames)
     trainFile=trainFile.sample(frac=1).reset_index(drop=True)
+    trainFile = trainFile.apply(lambda x: pd.Series(x.dropna().values))
     rutaTrainFile=cwd+ '/datasets/trainFile.tsv'
     trainFile.to_csv(rutaTrainFile,index=False,sep='\t')
 
