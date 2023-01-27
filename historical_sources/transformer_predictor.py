@@ -72,29 +72,14 @@ def predictor(val_pair):
 	return make_prediction(val_pair, n_demo, out_dir)
 
 def train(example=True,dataFile=None):
-    commonFile=cwd+ '/datasets/train.tsv'
-    df = pd.read_csv(commonFile,sep='\t',lineterminator='\n',header=None)
     if example is True:
         exampleFile=cwd+ '/datasets/results200.tsv'
-        df1 = pd.read_csv(exampleFile,sep='\t',lineterminator='\n',header=None)
-        frames = [df,df1]
-        trainFile = pd.concat(frames)
-        trainFile=trainFile.sample(frac=1).reset_index(drop=True)
-        rutaTrainFile=cwd+ '/datasets/trainFile.tsv'
-        trainFile.to_csv(rutaTrainFile,index=False,sep='\t')
-        with open(rutaTrainFile) as f:
+        with open(exampleFile) as f:
             train_text = f.readlines()
         with open(exampleFile) as f:
             test_text = f.readlines()
     else:
-        df1 = pd.read_csv(dataFile,sep='\t',lineterminator='\n',header=None)
-        df1.columns=['id','sentence','predicate','subject','object']
-        frames = [df,df1]
-        trainFile = pd.concat(frames)
-        trainFile=trainFile.sample(frac=1).reset_index(drop=True)
-        rutaTrainFile=cwd+ '/datasets/trainFile.tsv'
-        trainFile.to_csv(rutaTrainFile,index=False,sep='\t')
-        with open(rutaTrainFile) as f:
+        with open(dataFile) as f:
             train_text = f.readlines()
         with open(dataFile) as f:
             test_text = f.readlines()
@@ -152,7 +137,7 @@ def train(example=True,dataFile=None):
     transformer.save_weights(out_dir+'transformer_model_weights/model')
 
 def train1():
-    exampleFile=cwd+ '/datasets/train.tsv'
+    exampleFile=cwd+ '/datasets/results200.tsv'
     with open(exampleFile) as f:
         train_text = f.readlines()
     with open(exampleFile) as f:
