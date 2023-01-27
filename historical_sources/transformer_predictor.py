@@ -213,9 +213,9 @@ def train1():
 
 def mixData():
     commonFile=cwd+ '/datasets/train.tsv'
-    df = pd.read_csv(commonFile,sep='\t',lineterminator='\n',header=None)
+    df = pd.read_csv(commonFile,sep='\t',lineterminator='\n')
     exampleFile=cwd+ '/datasets/results200.tsv'
-    df1 = pd.read_csv(exampleFile,sep='\t',lineterminator='\n',header=None)
+    df1 = pd.read_csv(exampleFile,sep='\t',lineterminator='\n')
     frames = [df,df1]
     trainFile = pd.concat(frames)
     trainFile=trainFile.sample(frac=1).reset_index(drop=True)
