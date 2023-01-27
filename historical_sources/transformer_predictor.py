@@ -54,6 +54,12 @@ else:
     exit()
 
 
+es_callback = tf.keras.callbacks.EarlyStopping(monitor='val_loss',
+                                                patience=10,
+                                                min_delta=0.005,
+                                                mode='auto',
+                                                restore_best_weights=True,
+                                                verbose=1)
 #logging.info("OBTAINING PREDICTION FOR INPUT QUERY...")
 
 """
