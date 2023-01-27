@@ -71,7 +71,6 @@ def train(example=True,dataFile=None):
     if example is True:
         exampleFile=cwd+ '/datasets/results200.tsv'
         df1 = pd.read_csv(exampleFile,sep='\t',lineterminator='\n',header=None)
-        df1.columns=['id','sentence','predicate','subject','object']
         frames = [df,df1]
         trainFile = pd.concat(frames)
         trainFile=trainFile.sample(frac=1).reset_index(drop=True)
