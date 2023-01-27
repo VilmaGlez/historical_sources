@@ -144,3 +144,64 @@ def train(example=True,dataFile=None):
     logging.info("Saving learned weights to {}\n".format(
         out_dir+'transformer_model_weights/model'))
     transformer.save_weights(out_dir+'transformer_model_weights/model')
+
+def train1():
+    exampleFile=cwd+ '/datasets/results200.tsv'
+    with open(exampleFile) as f:
+        train_text = f.readlines()
+    with open(exampleFile) as f:
+        test_text = f.readlines()
+
+    train_pairs = list(
+        map(functools.partial(
+            prepare_data), train_text))
+    test_pairs= list(
+        map(functools.partial(
+            prepare_data), test_text))
+    train_in_texts = [pair[0] for pair in train_pairs]
+    train_out_texts = [pair[1] for pair in train_pairs]
+
+    input_vectorizer = layers.experimental.preprocessing.TextVectorization(
+        output_mode="int", max_tokens=max_features,
+        # ragged=False, # only for TF v2.7
+        output_sequence_length=sequence_length,
+        standardize=custom_standardization)
+
+    output_vectorizer = layers.experimental.preprocessing.TextVectorization(
+        output_mode="int", max_tokens=max_features, # ragged=False,
+        output_sequence_length=sequence_length+1,
+        standardize=custom_standardization)
+
+    input_vectorizer.adapt(train_in_texts)
+    output_vectorizer.adapt(train_out_texts)
+    #saving the vectorizers also
+    save_vectorizer(
+        vectorizer=input_vectorizer, to_file=out_dir+'in_vect_model')
+    save_vectorizer(
+        vectorizer=output_vectorizer, to_file=out_dir+'out_vect_model')
+    train_ds = make_dataset(train_pairs)
+    test_ds = make_dataset(test_pairs)
+    logging.info("Training Transformer Semantic EncoDec")
+    history = transformer.fit(train_ds,
+        epochs=n_epochs,
+        validation_data=test_ds,
+            callbacks=[ #cp_callback,
+                        es_callback])
+    logging.info("TRAINED!!")
+    rdf = pd.DataFrame(history.history)
+    rdf.to_csv(out_dir + "history.csv")
+    fig, axes = plt.subplots(2, 1)
+    rdf[sort_cols(rdf.columns)].iloc[:, :2].plot(ax=axes[0])
+    axes[0].grid(b=True,which='major',axis='both',linestyle='--')
+    rdf[sort_cols(rdf.columns)].iloc[:, 2:].plot(ax=axes[1])
+    axes[1].grid(b=True,which='major',axis='both',linestyle='--')
+    plt.savefig(out_dir + 'history_plot.pdf')
+    """ Notes about saving the model weights:
+    - must be the same paramers when you load the model
+    - if you specify a directory, you will save them without a prefix
+    """
+    logging.info("Saving learned weights to {}\n".format(
+        out_dir+'transformer_model_weights/model'))
+    transformer.save_weights(out_dir+'transformer_model_weights/model')
+
+
