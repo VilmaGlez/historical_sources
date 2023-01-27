@@ -35,21 +35,24 @@ def prepare_data(line, start_token='[start] ', end_token=' [end]'):
     - include labels: whether to include the last two labels or not
     """
     line = line.split('\t')
-    line.pop(0) # sentence, pred, subject, object1, object2, .. objectN,  label, label
+    if(len(line)==5):
+        line.pop(0) # sentence, pred, subject, object1, object2, .. objectN,  label, label
 
-    """ Check whether the predicate is just full of empy chars or not
-    and also to add spaces between the words (due to the conceptnet not being spaced)
-    """
-    pred = ' '.join(re.findall('[A-Z][a-z]*', line[1])).lower()
-    if pred.isspace() or not pred:
-        """ If is spaced, then just accept line as is"""
-        pred = line[1]
+        """ Check whether the predicate is just full of empy chars or not
+        and also to add spaces between the words (due to the conceptnet not being spaced)
+        """
+        pred = ' '.join(re.findall('[A-Z][a-z]*', line[1])).lower()
+        if pred.isspace() or not pred:
+            """ If is spaced, then just accept line as is"""
+            pred = line[1]
 
-    sample = [pred, line[2],start_token + line[3] + end_token] #create the sample
-    sample_o = sample[-1]
-    sample_i = ' '.join([sample[1], sample[0]])
-   
-    return  sample_i, sample_o
+        sample = [pred, line[2],start_token + line[3] + end_token] #create the sample
+        sample_o = sample[-1]
+        sample_i = ' '.join([sample[1], sample[0]])
+
+        return  sample_i, sample_o
+    else:
+        return
 
 @tf.keras.utils.register_keras_serializable()
 def custom_standardization(input_string):
