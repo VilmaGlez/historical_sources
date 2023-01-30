@@ -57,36 +57,57 @@ pip install git+https://github.com/VilmaGlez/historical_sources.git
 
 Finally, you must download the trained model by executing the following:
 
-```sh
-
+```python
 from historical_sources import downloads
+
+download_results():
 
 ```
 Note: the above step only needs to be done once after the package installation.
+
+If you need to modify the download link from google drive, just add the folder to your google drive repository and copy the link from the folder (make sure it is a public link) and paste it as shown below:
+
+Example:
+```python
+from historical_sources import downloads
+
+download_results(False,"https://drive.google.com/drive/folders/1vPt_QbACi960J8Ocy6iIWfUcd76a7Vrr?usp=share_link"):
+
+```
+
 ## Usage 
 
-### Example to create a training set. 
-You can specify the path of your file or use the default as follows:
+### Train a model. 
 
+If you need to train a new model do the following:
+
+Create a folder with the files you want to use for training. To create the dataset for training, do the following, and add the path of the created folder:
+
+Example:
 ```python 
 >>> from historical_sources import set_train_modules
 
->>> set_train_modules.set_train()
+>>> set_train_modules.create_training_set("vilma/documentos/entrenamiento")
 
 ```
+The results will be saved in a file called "setTrain.tsv".
 
-The results are a document called "setTrain.tsv".
+The next step would be to start training the network, do the following and add the path where your training set is located:
 
-### Example to train the neural network
-You can specify the path of your file or use the default as follows:
+Example:
 ```python
 >>> from historical_sources import transformer_predictor
 
->>> transformer_predictor.train()
+>>> transformer_predictor.train(False,"vilma/documentos/entrenamiento/setTrain.tsv")
 
 ```
+The training usually lasts some time according to the amount of data used, be patient, when finished you will be notified and you will have your new training model.
 
-### Example to make a inference.
+### Inference.
+
+If you would like to try the previously downloaded model, here you can find some examples of use:
+
+
 
 ```python
 >>> from historical_sources import transformer_predictor
@@ -125,6 +146,21 @@ Given sentence: The weapons they used were bows and arrows and clubs, in which t
 Generated sentence: The weapons they used were bows and arrows and clubs
  
 ```
+If you want to perform different tests:
+Specify your subject-predicate and object.
+Finally do the following:
+
+```python
+>>> from historical_sources import transformer_predictor
+>>> Subject_Predicate = "your-subject-and-predicate"
+>>> Object = "your-object"
+>>> prediction = transformer_predictor.predictor((Subject_Predicate, Object))
+>>> prediction = prediction.replace("[start] ", '').replace(" [end]", '')
+>>> print(f"Given sentence: {Subject_Predicate} {Object}")
+>>> print(f"Generated sentence: {Subject_Predicate} {prediction}")
+```
+Note: you can get more subject-predicates and objects, from the "setTrain.tsv" file.
+
 
 
 
