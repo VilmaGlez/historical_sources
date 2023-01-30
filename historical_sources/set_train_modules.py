@@ -36,7 +36,7 @@ def tsv_set_train(r,e):
     df1 = pd.DataFrame (e, columns = ['id','sentence','subject','predicate','object'])
     df1.to_csv('erroresSetTrain.tsv',index=False,sep='\t')
 
-def set_train(input_path=cwd):
+def create_training_set(input_path=cwd):
     """
     from a directory create a set train
     
