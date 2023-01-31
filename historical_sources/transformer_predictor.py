@@ -68,8 +68,8 @@ implementing the Allen AI's Semantic Role Labeling method. I set their values
 for testing purposes:
 """
 def predictor(val_pair):
-	global n_demo, out_dir
-	return make_prediction(val_pair, n_demo, out_dir)
+    global n_demo, out_dir
+    return make_prediction(val_pair, n_demo, out_dir)
 
 def train(default=True,dataFile=None):
     if default is True:

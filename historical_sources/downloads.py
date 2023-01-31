@@ -6,9 +6,9 @@ cwd = str(sysconfig.get_paths()["purelib"]) + '/historical_sources'
 
 def download_results(default=True,link=None):
     if default is True:
-        url = "https://drive.google.com/drive/folders/1vPt_QbACi960J8Ocy6iIWfUcd76a7Vrr?usp=share_link"
+        url = "https://drive.google.com/drive/folders/1VLjR9oBWR8FoyTEsQbDGqbtQS8uEJ4u_?usp=share_link"
         gdown.download_folder(url, quiet=True, use_cookies=False)
-        url1 = "https://drive.google.com/drive/folders/10q0jIksGyZ0PmxWIwkBx4a8X02ufVpVS?usp=share_link"
+        url1 = "https://drive.google.com/drive/folders/1smyfEMsWFzUtmVeRL64Yv5MnFB_hvqk9?usp=share_link"
         gdown.download_folder(url1, quiet=True, use_cookies=False)
         shutil.move('results_final',cwd)
         shutil.move('datasets',cwd)
