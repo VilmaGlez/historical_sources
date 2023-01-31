@@ -1,9 +1,0 @@
-import sysconfig
-import gdown
-
-def download_results():
-    cwd = '/home/iarroyof/v/r'
-    url = "https://drive.google.com/drive/folders/1C8XPmpCFkuHmKT2O4vjhsPSHgBSFkZ4g?usp=share_link"
-    gdown.download_folder(url, cwd, quiet=True, use_cookies=False)
-
-download_results()
