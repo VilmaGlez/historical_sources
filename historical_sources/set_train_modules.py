@@ -56,7 +56,7 @@ def create_training_set(input_path,common_sense_data="csd.tsv"):
     errors=[]
     with os.scandir(input_path) as ficheros:
         for fichero in ficheros:
-            ruta=input_path+fichero.name
+            ruta=input_path + '/' + fichero.name
             data=open_source_file(ruta)
             sentences=extract_sentences(data)
             for sentence in sentences:

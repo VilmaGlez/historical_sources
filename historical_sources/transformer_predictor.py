@@ -74,13 +74,13 @@ def predictor(val_pair):
 def train(default=True,dataFile=None):
     if default is True:
         exampleFile=cwd+ '/datasets/results200.tsv'
-	testFile=cwd+ '/datasets/csd.tsv'
+        testFile=cwd+ '/datasets/csd.tsv'
         with open(exampleFile) as f:
             train_text = f.readlines()
         with open(testFile) as f:
             test_text = f.readlines()
     else:
-	testFile=cwd+ '/datasets/csd.tsv'
+        testFile=cwd+ '/datasets/csd.tsv'
         with open(dataFile) as f:
             train_text = f.readlines()
         with open(testFile) as f:
