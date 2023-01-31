@@ -4,7 +4,7 @@ from historical_sources.classification import extract_sentences
 from historical_sources.classification import extract_triplets 
 import sysconfig
 
-cwd = str(sysconfig.get_paths()["purelib"]) + '/historical_sources/datasets/p/'
+cwd = str(sysconfig.get_paths()["purelib"]) + '/historical_sources/datasets/'
 
 #abrir archivo traducido
 def open_source_file(name):
@@ -21,7 +21,7 @@ def open_source_file(name):
     return data
 
 #crear los tsv
-def tsv_set_train(r,e):
+def tsv_set_train(r,e,common_sense_data):
     """
     create a set train archive from a dataframe
     
@@ -31,12 +31,18 @@ def tsv_set_train(r,e):
         setTrain.tsv
         erroresSetTrain.tsv 
     """
+    commonFile = cwd + common_sense_data
     df = pd.DataFrame (r, columns = ['id','sentence','subject','predicate','object'])
-    df.to_csv('setTran.tsv',index=False,sep='\t')
+    df = df.sample(frac=0.7).reset_index(drop=True)
+    df2 = pd.read_csv(commonFile,sep='\t')
+    frames = [df,df2]
+    trainFile = pd.concat(frames)
+    trainFile=trainFile.sample(frac=1).reset_index(drop=True)
+    trainFile.to_csv('setTrain.tsv',index=False,sep='\t')
     df1 = pd.DataFrame (e, columns = ['id','sentence','subject','predicate','object'])
     df1.to_csv('erroresSetTrain.tsv',index=False,sep='\t')
 
-def create_training_set(input_path=cwd):
+def create_training_set(input_path,common_sense_data="csd.tsv"):
     """
     from a directory create a set train
     
@@ -62,7 +68,7 @@ def create_training_set(input_path=cwd):
                         else:
                             errors.append(output[i])
             print("Done",fichero.name)
-    tsv_set_train(st,errors)
+    tsv_set_train(st,errors,common_sense_data)
 
 
 
