@@ -32,7 +32,7 @@ def tsv_set_train(r,e):
         erroresSetTrain.tsv 
     """
     df = pd.DataFrame (r, columns = ['id','sentence','subject','predicate','object'])
-    df.to_csv('setTrain.tsv',index=False,sep='\t')
+    df.to_csv('setTran.tsv',index=False,sep='\t')
     df1 = pd.DataFrame (e, columns = ['id','sentence','subject','predicate','object'])
     df1.to_csv('erroresSetTrain.tsv',index=False,sep='\t')
 
