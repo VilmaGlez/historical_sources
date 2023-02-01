@@ -38,7 +38,6 @@ def tsv_set_train(r,e,common_sense_data):
     frames = [df,df2]
     trainFile = pd.concat(frames)
     trainFile=trainFile.sample(frac=1).reset_index(drop=True)
-    trainFile=trainFile.dropna()
     trainFile.to_csv('setTrain.tsv',index=False,sep='\t')
     df1 = pd.DataFrame (e, columns = ['id','sentence','subject','predicate','object'])
     df1.to_csv('erroresSetTrain.tsv',index=False,sep='\t')
@@ -64,7 +63,7 @@ def create_training_set(input_path,common_sense_data="csd.tsv"):
                 output=extract_triplets(sentence,fichero.name)
                 if output != None:
                     for i in range(len(output)):
-                        if output[i][2] != "" and output[i][4] != "":
+                        if output[i][0] != "" and output[i][1] != "" and output[i][2] != "" and output[i][3] != "" and output[i][4] != "":
                             st.append(output[i]) 
                         else:
                             errors.append(output[i])
