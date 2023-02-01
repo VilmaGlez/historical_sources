@@ -66,9 +66,9 @@ Description: # Historical Sources
         Finally, you must download the trained model by executing the following:
         
         ```python
-        from historical_sources import downloads
+        from historical_sources import downloads (do not specify the link if you want our pretrained model, which url is specified by default).
         
-        download_results():
+        downloads.download_results(default=True)
         
         ```
         Note: the above step only needs to be done once after the package installation.
@@ -79,7 +79,8 @@ Description: # Historical Sources
         ```python
         from historical_sources import downloads
         
-        download_results(False,"https://drive.google.com/drive/folders/1vPt_QbACi960J8Ocy6iIWfUcd76a7Vrr?usp=share_link"):
+        downloads.download_results(default=False,
+            link="https://drive.google.com/drive/folders/1vPt_QbACi960J8Ocy6iIWfUcd76a7Vrr?usp=share_link")
         
         ```
         
@@ -89,31 +90,33 @@ Description: # Historical Sources
         
         If you need to train a new model do the following:
         
-        Create a folder with the files you want to use for training. To create the dataset for training, do the following, and add the path of the created folder:
+        Create a folder with the files you want to use for training (the input directory). To create the dataset for training, do the following, and add the path of the created folder:
         
         Example:
         ```python 
         >>> from historical_sources import set_train_modules
         
-        >>> set_train_modules.create_training_set("vilma/documentos/entrenamiento")
+        >>> set_train_modules.create_training_set("vilma/documentos/entrenamiento", common_sense_data="cn_kb.csv")
         
         ```
-        The results will be saved in a file called "setTrain.tsv".
+        The results will be saved in a file called "setTrain.tsv". This file is stored in the current working directory.
         
-        The next step would be to start training the network, do the following and add the path where your training set is located:
+        Notice that at the moment, we have not ehabled hyperparameters of the Transformer model. We alctualy keep them fixed according to what it is known to work the best. Only the training data changes ("setTrain.tsv" cintains ConceptNet + <triplets from files in the input directory>).
+        
+        In the case the pretrained model does not fit your requirements, the next step would be to start training the network, do the following and add the path where your training set is located:
         
         Example:
         ```python
         >>> from historical_sources import transformer_predictor
         
-        >>> transformer_predictor.train(False,"vilma/documentos/entrenamiento/setTrain.tsv")
+        >>> transformer_predictor.train(default=False, "setTrain.tsv")
         
         ```
-        The training usually lasts some time according to the amount of data used, be patient, when finished you will be notified and you will have your new training model.
+        The training usually lasts some time according to the amount of data and computing power used, be patient, when finished you will be notified and you will have your new training model (from several hours to days).
         
         ### Inference.
         
-        If you would like to try the previously downloaded model, here you can find some examples of use:
+        If you would like to try the previously downloaded (trained) model, here you can find some examples of use:
         
         
         
