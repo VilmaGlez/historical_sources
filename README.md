@@ -101,7 +101,7 @@ Example:
 ```python
 >>> from historical_sources import transformer_predictor
 
->>> transformer_predictor.train(default=False, "setTrain.tsv")
+>>> transformer_predictor.train(default=False, dataFile="setTrain.tsv")
 
 ```
 The training usually lasts some time according to the amount of data and computing power used, be patient, when finished you will be notified and you will have your new training model (from several hours to days).
