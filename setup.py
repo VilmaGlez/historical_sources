@@ -55,6 +55,6 @@ if __name__ == "__main__":
         packages=find_packages(),
         zip_safe=False,
         include_package_data = True,
-        install_requires=["joblib","stanza","deepl","tensorflow","numpy","matplotlib","pandas","gdown"],
+        install_requires=["joblib","stanza","deepl","numpy","matplotlib","pandas","gdown"],
         classifiers=CLASSIFIERS,
     )
