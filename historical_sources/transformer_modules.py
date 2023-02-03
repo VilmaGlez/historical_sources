@@ -18,7 +18,6 @@ logging.basicConfig(
     datefmt='%m/%d/%Y %I:%M:%S %p')
 cwd = str(sysconfig.get_paths()["purelib"]) + '/historical_sources'
 config_file = cwd + '/predictor_configuration.json'
-cout_dir = cwd + '/results_final/OIEGP-transformer_epochs-100_stackSize-1_seqlen-30_maxfeat-15000_batch-64_keydim-64_modeldim-512_latent-2048_heads-8/'
 strip_chars = string.punctuation
 strip_chars = strip_chars.replace("[", "")
 strip_chars = strip_chars.replace("]", "")
@@ -422,7 +421,7 @@ def get_max_vocab():
             num_heads,
             out_dir
             ) = get_config(config_file)
-input_vectorizer =  load_vectorizer(cout_dir+'in_vect_model')
+input_vectorizer =  load_vectorizer(out_dir+'in_vect_model')
 output_vectorizer = load_vectorizer(out_dir+'out_vect_model')
 
 max_vocab = get_max_vocab()
