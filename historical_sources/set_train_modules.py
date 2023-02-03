@@ -31,10 +31,14 @@ def tsv_set_train(r,e,common_sense_data):
         setTrain.tsv
         erroresSetTrain.tsv 
     """
-    commonFile = cwd + common_sense_data
+    commonFile = cwd + "csd.tsv"
     df = pd.DataFrame (r, columns = ['id','sentence','subject','predicate','object'])
     df = df.sample(frac=0.7).reset_index(drop=True)
-    df2 = pd.read_csv(commonFile,sep='\t')
+    if common_sense_data == "cn_kb.csv":
+        df2 = pd.read_csv(commonFile,sep='\t')
+    elif common_sense_data == "cn_kb_s.csv":
+        df2 = pd.read_csv(commonFile,sep='\t')
+        df2 = df2.sample(frac = 0.1)
     frames = [df,df2]
     trainFile = pd.concat(frames)
     trainFile=trainFile.sample(frac=1).reset_index(drop=True)
@@ -42,7 +46,7 @@ def tsv_set_train(r,e,common_sense_data):
     df1 = pd.DataFrame (e, columns = ['id','sentence','subject','predicate','object'])
     df1.to_csv('erroresSetTrain.tsv',index=False,sep='\t')
 
-def create_training_set(input_path,common_sense_data="csd.tsv"):
+def create_training_set(default,input_path,common_sense_data):
     """
     from a directory create a set train
     
@@ -52,6 +56,8 @@ def create_training_set(input_path,common_sense_data="csd.tsv"):
         r :: list 
         e :: list 
     """
+    if default is True:
+        common_sense_data = "cn_kb_s.csv"
     st=[]
     errors=[]
     with os.scandir(input_path) as ficheros:

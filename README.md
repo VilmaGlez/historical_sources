@@ -11,7 +11,7 @@ First of all you must install [Conda](https://www.anaconda.com/products/distribu
 
 Once installed open your terminal and type:
 ```sh
-conda create --name python3-env python
+conda create --name python3-env python==3.9
 ```
 To change between environments type:
 
@@ -20,21 +20,16 @@ conda activate [name-of-your-environment]
 ```
 ### Installing AllenNLP
 
-To avoid errors in AllenNLP installation, first do the following:
-
-```sh
-conda install -c conda-forge jsonnet
-```
 Now, install AllenNLP and models: 
  
 ```sh
 
-pip install allennlp==2.2.0
+pip install allennlp
 
 ```
 
 ```sh
-pip install allennlp-models==2.2.0
+pip install allennlp-models
 ```
 ### Installing TensorFlow
 
@@ -88,12 +83,12 @@ Example:
 ```python 
 >>> from historical_sources import set_train_modules
 
->>> set_train_modules.create_training_set("vilma/documentos/entrenamiento", common_sense_data="cn_kb.csv")
+>>> set_train_modules.create_training_set(default=False,input_path="vilma/documentos/entrenamiento", common_sense_data="cn_kb.csv")
 
 ```
 The results will be saved in a file called "setTrain.tsv". This file is stored in the current working directory.
 
-Notice that at the moment, we have not ehabled hyperparameters of the Transformer model. We alctualy keep them fixed according to what it is known to work the best. Only the training data changes ("setTrain.tsv" cintains ConceptNet + <triplets from files in the input directory>).
+Notice that at the moment, we have not ehabled hyperparameters of the Transformer model. We alctualy keep them fixed according to what it is known to work the best. Only the training data changes ("setTrain.tsv" contains ConceptNet + <triplets from files in the input directory>).
 
 In the case the pretrained model does not fit your requirements, the next step would be to start training the network, do the following and add the path where your training set is located:
 
@@ -101,7 +96,7 @@ Example:
 ```python
 >>> from historical_sources import transformer_predictor
 
->>> transformer_predictor.train(default=False, dataFile="setTrain.tsv")
+>>> transformer_predictor.train(dataFile="setTrain.tsv")
 
 ```
 The training usually lasts some time according to the amount of data and computing power used, be patient, when finished you will be notified and you will have your new training model (from several hours to days).

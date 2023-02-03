@@ -71,20 +71,12 @@ def predictor(val_pair):
     global n_demo, out_dir
     return make_prediction(val_pair, n_demo, out_dir)
 
-def train(default=True,dataFile=None):
-    if default is True:
-        exampleFile=cwd+ '/datasets/results200.tsv'
-        testFile=cwd+ '/datasets/csd.tsv'
-        with open(exampleFile) as f:
-            train_text = f.readlines()
-        with open(testFile) as f:
-            test_text = f.readlines()
-    else:
-        testFile=cwd+ '/datasets/csd.tsv'
-        with open(dataFile) as f:
-            train_text = f.readlines()
-        with open(testFile) as f:
-            test_text = f.readlines()
+def train(dataFile):
+    testFile=cwd+ '/datasets/results200.tsv'
+    with open(dataFile) as f:
+        train_text = f.readlines()
+    with open(testFile) as f:
+        test_text = f.readlines()
 
     train_pairs = list(
         map(functools.partial(
