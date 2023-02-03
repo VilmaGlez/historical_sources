@@ -83,7 +83,7 @@ Example:
 ```python 
 >>> from historical_sources import set_train_modules
 
->>> set_train_modules.create_training_set(default=False,input_path="vilma/documentos/entrenamiento", common_sense_data="cn_kb.csv")
+>>> set_train_modules.create_training_set(default=True,input_path="vilma/documentos/entrenamiento", common_sense_data=None)
 
 ```
 The results will be saved in a file called "setTrain.tsv". This file is stored in the current working directory.
