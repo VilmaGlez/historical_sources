@@ -1,7 +1,0 @@
-joblib
-stanza
-deepl
-numpy
-matplotlib
-pandas
-gdown
