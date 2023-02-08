@@ -1,3 +1,2 @@
 include historical_sources/predictor_configuration.json
-include historical_sources/results_final/OIEGP-transformer_epochs-100_stackSize-1_seqlen-30_maxfeat-15000_batch-64_keydim-64_modeldim-512_latent-2048_heads-8/doc.txt
 
