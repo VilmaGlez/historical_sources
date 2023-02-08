@@ -25,7 +25,17 @@ To avoid errors in AllenNLP installation, first do the following:
 ```sh
 conda install -c conda-forge jsonnet
 ```
+Now, install AllenNLP and models: 
+ 
+```sh
 
+pip install allennlp==2.10.1
+
+```
+
+```sh
+pip install allennlp-models==2.10.1
+```
 Now, download the dependencies file: 
  
 ```sh
