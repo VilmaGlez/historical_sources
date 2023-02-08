@@ -18,29 +18,29 @@ To change between environments type:
 ```sh
 conda activate [name-of-your-environment]
 ```
-### Installing AllenNLP
+### Installing Dependencies 
 
-Now, install AllenNLP and models: 
+To avoid errors in AllenNLP installation, first do the following:
+
+```sh
+conda install -c conda-forge jsonnet
+```
+
+Now, download the dependencies file: 
  
 ```sh
 
-pip install allennlp
+wget https://raw.githubusercontent.com/VilmaGlez/historical_sources/main/historical_sources/requirements.txt
+
+```
+Install the dependencies:
+
+```sh
+
+pip install -r requirements.txt
 
 ```
 
-```sh
-pip install allennlp-models
-```
-### Installing TensorFlow
-
-Install TensorFlow 2.6
-```sh
-pip install tensorflow==2.6.0
-```
-And install Keras 2.6
-```sh
-pip install keras==2.6.0
-```
 ### Installing historical_sources package
 
 Next step, for package installation open your terminal and type:
@@ -50,12 +50,14 @@ pip install git+https://github.com/VilmaGlez/historical_sources.git
 ```
 ### Download a trained model
 
-Finally, you must download the trained model by executing the following:
+Finally, you must download the trained model and the datasets by executing the following:
 
 ```python
 from historical_sources import downloads (do not specify the link if you want our pretrained model, which url is specified by default).
 
-downloads.download_results(default=True)
+downloads.download(default=True,link=None)
+
+download_datasets()
 
 ```
 Note: the above step only needs to be done once after the package installation.
