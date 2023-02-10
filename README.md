@@ -67,7 +67,7 @@ from historical_sources import downloads (do not specify the link if you want ou
 
 downloads.download(default=True,link=None)
 
-download_datasets()
+downloads.download_datasets()
 
 ```
 Note: the above step only needs to be done once after the package installation.
