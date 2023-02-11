@@ -75,7 +75,7 @@ Description: # Historical Sources
         
         downloads.download(default=True,link=None)
         
-        download_datasets()
+        downloads.download_datasets()
         
         ```
         Note: the above step only needs to be done once after the package installation.
