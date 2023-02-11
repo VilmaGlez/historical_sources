@@ -39,6 +39,8 @@ def tsv_set_train(r,e,common_sense_data):
     elif common_sense_data == "cn_kb_s.csv":
         df2 = pd.read_csv(commonFile,sep='\t')
         df2 = df2.sample(frac = 0.1)
+    else:
+        df2 = pd.read_csv(common_sense_data,sep='\t')
     frames = [df,df2]
     trainFile = pd.concat(frames)
     trainFile=trainFile.sample(frac=1).reset_index(drop=True)
