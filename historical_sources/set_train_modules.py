@@ -43,7 +43,8 @@ def tsv_set_train(r,e,common_sense_data):
         df2 = pd.read_csv(common_sense_data,sep='\t')
     frames = [df,df2]
     trainFile = pd.concat(frames)
-    trainFile=trainFile.sample(frac=1).reset_index(drop=True)
+    trainFile = trainFile.sample(frac=1).reset_index(drop=True)
+    trainFile = trainFile.replace('\n', ' ', regex=True)
     trainFile.to_csv('setTrain.tsv',index=False,sep='\t')
     df1 = pd.DataFrame (e, columns = ['id','sentence','subject','predicate','object'])
     df1.to_csv('erroresSetTrain.tsv',index=False,sep='\t')
